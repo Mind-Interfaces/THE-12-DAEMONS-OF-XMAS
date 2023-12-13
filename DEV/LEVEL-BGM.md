@@ -40,9 +40,7 @@ Here are two musical prompts for each level, complete with BPM (Beats Per Minute
 
 10. **December 22, Friday (Harab Serapel - Venus)**
     - Prompt 1: A smooth, dark electronic track with a steady beat and ambient textures, illustrating the duality of trust and lust. BPM: 88, Key: C minor.
-    - Prompt 2: A hypnotic, bass-driven melody with sultry synth lines, portraying a complex mix of desire and self-control. BPM
-
-: 92, Key: F minor.
+    - Prompt 2: A hypnotic, bass-driven melody with sultry synth lines, portraying a complex mix of desire and self-control. BPM: 92, Key: F minor.
 
 11. **December 23, Saturday (Sathariel - Saturn)**
     - Prompt 1: A heavy, brooding composition with low piano chords and a slow, marching rhythm, encapsulating a feeling of fear and sloth. BPM: 65, Key: G minor.
