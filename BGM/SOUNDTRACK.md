@@ -1,3 +1,5 @@
+# AUDIOCRAFT SOUNDTRACK
+
 Level 1. **December 13, Wednesday (Samael - Mercury)**
    - Prompt 1: A whimsical yet unsettling melody featuring pizzicato strings and a light harpsichord, evoking a sense of surprise and mischief. BPM: 120, Key: D minor.
    - Prompt 2: An enigmatic and playful tune with chimes and a staccato woodwind section, creating a sense of curiosity and unpredictability. BPM: 110, Key: G minor.
@@ -45,3 +47,10 @@ Level 11. **December 23, Saturday (Sathariel - Saturn)**
 Level 12. **December 24, Sunday (Thagiriron - Sun)**
    - Prompt 1: An epic, choir-driven piece with a mix of light and dark tones, symbolizing the anticipation of Christmas and the pride of the sun. BPM: 108, Key: A major.
    - Prompt 2: A powerful, orchestral track with a sense of grandeur and an underlying ominous feel, representing the clash between pride and humility. BPM: 110, Key: D major.
+    
+
+   
+# MIDI
+
+https://tma.main.jp/midi/
+
