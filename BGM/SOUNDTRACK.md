@@ -33,15 +33,15 @@ Level 8. **December 20, Wednesday (Samael - Mercury)**
 Level 9. **December 21, Thursday (Gamchicoth - Jupiter)**
    - Prompt 1: A festive, yet dark orchestral piece with a strong brass section and a choir, blending joy with a sense of hidden depth. BPM: 98, Key: B flat major.
    - Prompt 2: A lively, celebratory track with a sinister undertone, featuring a mix of traditional Christmas instruments and unsettling harmonies. BPM: 105, Key: E flat major.
-
+    
 Level 10. **December 22, Friday (Harab Serapel - Venus)**
-    - Prompt 1: A smooth, dark electronic track with a steady beat and ambient textures, illustrating the duality of trust and lust. BPM: 88, Key: C minor.
-    - Prompt 2: A hypnotic, bass-driven melody with sultry synth lines, portraying a complex mix of desire and self-control. BPM: 92, Key: F minor.
+   - Prompt 1: A smooth, dark electronic track with a steady beat and ambient textures, illustrating the duality of trust and lust. BPM: 88, Key: C minor.
+   - Prompt 2: A hypnotic, bass-driven melody with sultry synth lines, portraying a complex mix of desire and self-control. BPM: 92, Key: F minor.
 
 Level 11. **December 23, Saturday (Sathariel - Saturn)**
-    - Prompt 1: A heavy, brooding composition with low piano chords and a slow, marching rhythm, encapsulating a feeling of fear and sloth. BPM: 65, Key: G minor.
-    - Prompt 2: A dark, atmospheric track with lingering strings and a somber tone, conveying a sense of dread and the need for diligence. BPM: 72, Key: C# minor.
+   - Prompt 1: A heavy, brooding composition with low piano chords and a slow, marching rhythm, encapsulating a feeling of fear and sloth. BPM: 65, Key: G minor.
+   - Prompt 2: A dark, atmospheric track with lingering strings and a somber tone, conveying a sense of dread and the need for diligence. BPM: 72, Key: C# minor.
 
 Level 12. **December 24, Sunday (Thagiriron - Sun)**
-    - Prompt 1: An epic, choir-driven piece with a mix of light and dark tones, symbolizing the anticipation of Christmas and the pride of the sun. BPM: 108, Key: A major.
-    - Prompt 2: A powerful, orchestral track with a sense of grandeur and an underlying ominous feel, representing the clash between pride and humility. BPM: 110, Key: D major.
+   - Prompt 1: An epic, choir-driven piece with a mix of light and dark tones, symbolizing the anticipation of Christmas and the pride of the sun. BPM: 108, Key: A major.
+   - Prompt 2: A powerful, orchestral track with a sense of grandeur and an underlying ominous feel, representing the clash between pride and humility. BPM: 110, Key: D major.
