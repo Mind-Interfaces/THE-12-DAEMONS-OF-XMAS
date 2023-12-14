@@ -50,7 +50,22 @@ Level 12. **December 24, Sunday (Thagiriron - Sun)**
     
 
    
-# MIDI
+# MIDI Source
+
+ref: https://www.youtube.com/watch?v=ds22PyCQkGE
+
+#10 Lavender Town (Pokemon Red and Blue)
+#09 Mt. Moon (Pokemon FireRed and LeafGreen)
+#08 Team Galactic HQ - Lake Trio Room (Pokemon diamond and Pearl)
+#07 Seaward Cave (Pokemon Sun and Moon)
+#06 Azure Flute / Hall of Origin (Pokemon Diamond and Pearl)
+#05 Unown Radio Transmission (Pokemon Gold and Silver)
+#04 Strange House (Pokemon Black 2 and White 2)
+#03 Old Chateau (Pokemon Diamond and Pearl)
+#02 Abandoned Thrifty Megamart (Pokemon Sun and Moon)
+#01 N's Room (Pokemon Black 2 and White 2)
+
+# MIDI Converter
 
 https://tma.main.jp/midi/
 
