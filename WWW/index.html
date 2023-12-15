@@ -1,1 +1,50 @@
-# Let's do it! 🎄
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>THE 12 DAEMONS OF CHRISTMAS</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #countdown {
+            font-size: 2em;
+            margin-top: 20%;
+        }
+    </style>
+    <script>
+        function updateCountdown() {
+            var now = new Date();
+            var eventDate = new Date("December 21, 2023 00:00:00");
+            var currentTime = now.getTime();
+            var eventTime = eventDate.getTime();
+            var remainingTime = eventTime - currentTime;
+            
+            var seconds = Math.floor(remainingTime / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+            
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+            
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            document.getElementById("countdown").innerText = days + " days " + hours + " hours " 
+                                                            + minutes + " minutes " + seconds + " seconds ";
+            
+            setTimeout(updateCountdown, 1000);
+        }
+    </script>
+</head>
+<body onload="updateCountdown()">
+    <div id="countdown"></div>
+</body>
+</html>
