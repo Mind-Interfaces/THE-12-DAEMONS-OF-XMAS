@@ -27,7 +27,6 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (100, 100, 100)
 RED = (255, 0, 0)
-PINK = (255, 0, 255)
 
 # Maze settings
 maze_rows = 10
@@ -43,16 +42,18 @@ player_size = cell_size - 10
 # Font setup
 font = pygame.font.Font(None, 36)
 
-# Sample questions (integrate with LLM for real questions)
+# Sample questions (expand this with real questions)
 questions = [
-    "Question 1: ...",
-    "Question 2: ...",
-    "Question 3: ..."
+    {"text": "Question 1: ...", "correct_option": "A", "options": ["A", "B", "C"]},
+    {"text": "Question 2: ...", "correct_option": "B", "options": ["A", "B", "C"]},
+    {"text": "Question 3: ...", "correct_option": "C", "options": ["A", "B", "C"]}
 ]
 
 # Game variables
 current_question = None
 score = 0
+baal_hint_active = False
+difficulty_level = 1  # Increase this when Baal's hint is used
 
 def generate_maze():
     """Generate a simple maze."""
@@ -94,8 +95,15 @@ def check_question():
     global current_question, score
     if player_pos == [maze_columns - 1, maze_rows - 1]:  # Example end position
         current_question = random.choice(questions)
-        # Logic to display and answer the question goes here
-        score += 1  # Increment score for now
+        present_question(current_question)
+
+def present_question(question):
+    """Display a question and handle player input for the answer."""
+    global score, baal_hint_active
+    # TODO: Display the question and options on screen
+    # Example: draw_text(question["text"], (100, 100))
+    # Handle player input for options and check answer
+    # Example: if player's answer == question["correct_option"]: score += 1
 
 def draw_text(text, position):
     """Draw text on the screen."""
