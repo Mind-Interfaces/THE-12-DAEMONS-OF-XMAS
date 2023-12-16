@@ -1,5 +1,8 @@
 # Astaroth Mini Game .. Food Fight
 # 🏗️ Focus on joy and the contrast between gluttony and temperance.
+# 🏗️ Astaroth tempts with excess and joy, testing humanity's resolve against gluttony and temperance.
+# 🚧 Astaroth's temptation pertains to the enduring battle against gluttony and the importance of temperance in the face of excessive indulgence. 
+# 🚧 It serves as a timeless reminder of the need for moderation.
 """
 In another realm, far removed from Lily's magical adventure, lived a fearsome hunter known as Kael. 
 His prowess in tracking down prey was legendary, rivaling even that of the great goddess Artemis herself. 
