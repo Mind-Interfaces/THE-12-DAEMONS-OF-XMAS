@@ -16,6 +16,8 @@ Only time would tell if Lily would emerge victorious or succumb to the lures of 
 """
 import pygame
 import random
+import math
+import time
 
 # Initialize Pygame
 pygame.init()
@@ -29,11 +31,33 @@ pygame.display.set_caption("Anammelech's Journey")
 player_image = pygame.image.load('anammelech_sprite.png')
 tree_image = pygame.image.load('christmas_tree.png')
 background_image = pygame.image.load('winter_forest.png')
+santa_image = pygame.image.load('santa_sprite.png')
 
 # Game variables
-player_position = [width//2, height//2]
+player_position = [width // 2, height // 2]
 tree_positions = [[random.randrange(width), random.randrange(height)] for _ in range(10)]
+santa_position = [random.randrange(width), random.randrange(height)]
+santa_speed = 2
+santa_direction = random.choice([(santa_speed, 0), (-santa_speed, 0), (0, santa_speed), (0, -santa_speed)])
 score = 0
+start_time = time.time()
+
+# Font for displaying text
+font = pygame.font.Font(None, 36)
+
+def move_santa():
+    global santa_position, santa_direction
+    santa_position[0] += santa_direction[0]
+    santa_position[1] += santa_direction[1]
+    if random.random() < 0.01:  # Adjust probability as needed
+        santa_direction = random.choice([(santa_speed, 0), (-santa_speed, 0), (0, santa_speed), (0, -santa_speed)])
+
+def check_collision(player_pos, other_pos, distance=20):
+    return math.hypot(player_pos[0] - other_pos[0], player_pos[1] - other_pos[1]) < distance
+
+def draw_text(text, position):
+    text_surface = font.render(text, True, (255, 255, 255))
+    screen.blit(text_surface, position)
 
 # Game loop
 running = True
@@ -53,19 +77,31 @@ while running:
     if keys[pygame.K_DOWN]:
         player_position[1] += 5
 
+    move_santa()
+
     # Check for setting trees on fire
     for tree_position in tree_positions:
-        if (player_position[0] in range(tree_position[0] - 10, tree_position[0] + 10) and 
-            player_position[1] in range(tree_position[1] - 10, tree_position[1] + 10)):
+        if check_collision(player_position, tree_position):
             tree_positions.remove(tree_position)
             score += 1
+
+    # Collision with Santa Claus
+    if check_collision(player_position, santa_position):
+        print("Caught by Santa! Game Over.")
+        running = False
 
     # Draw everything
     screen.blit(background_image, (0, 0))
     for tree_position in tree_positions:
         screen.blit(tree_image, tree_position)
+    screen.blit(santa_image, santa_position)
     screen.blit(player_image, player_position)
+
+    # Display score and time
+    elapsed_time = int(time.time() - start_time)
+    draw_text(f"Score: {score}", (10, 10))
+    draw_text(f"Time: {elapsed_time}", (10, 40))
+
     pygame.display.flip()
 
 pygame.quit()
-
