@@ -1,5 +1,8 @@
 # Baal Mini Game .. 
 # 🏗️ Examination of trust, and the struggle between lust and chastity.
+# 🏗️ Baal tempts with desire and lust, testing humanity's morality against adultery and chastity.
+# 🚧 Baal's challenge concerning desire and lust delves into the complex realm of human morality, particularly concerning fidelity and chastity. 
+# 🚧 This theme has been explored in countless philosophical and ethical discussions over the ages.
 '''
 Very well, then let us simplify it even further. 
 Instead of choosing truth or dare, players simply answer multiple-choice questions about love and desire. 
