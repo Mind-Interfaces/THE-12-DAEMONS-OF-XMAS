@@ -65,13 +65,25 @@ background_music = load_sound('path/to/background_music.ogg')
 mask_pickup_sound = load_sound('path/to/mask_pickup_sound.ogg')
 final_showdown_music = load_sound('path/to/final_showdown_music.ogg')
 
-# Game variables
-lilith_position = [width // 2, height // 2]
-mask_positions = {name: [random.randrange(width), random.randrange(height)] for name in mask_images}
-collected_masks = []
+# Additional Game Variables
+traps = []  # Coordinates for traps
+trap_image = load_image('path/to/trap_sprite.png')
+trap_triggered_sound = load_sound('path/to/trap_sound.ogg')
+score = 0
 
-# Font for displaying text
-font = pygame.font.Font(None, 36)
+# Generate Traps
+for _ in range(10):
+    traps.append([random.randrange(width), random.randrange(height)])
+
+# Trap Triggering Logic
+def trigger_traps():
+    global score
+    for trap in traps:
+        if pygame.Rect(lilith_position[0], lilith_position[1], lilith_image.get_width(), lilith_image.get_height()).colliderect(
+                pygame.Rect(trap[0], trap[1], trap_image.get_width(), trap_image.get_height())):
+            trap_triggered_sound.play()
+            score -= 5
+            traps.remove(trap)
 
 # Player Movement Function
 def move_lilith():
@@ -105,7 +117,43 @@ def draw_game_elements():
 # Final Showdown with Lucifuge
 def final_showdown():
     final_showdown_music.play()
-    # Logic for the final showdown with Lucifuge
+    global running
+    while boss_health > 0 and running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    create_fireball()
+                move_lilith()
+
+        move_fireballs()
+        screen.fill(BLACK)
+        screen.blit(lucifuge_image, lucifuge_position)
+        draw_game_elements()
+        draw_fireballs()
+        display_score()
+        pygame.display.flip()
+
+    # Handle victory or defeat
+    if boss_health <= 0:
+        show_victory_screen()
+    else:
+        show_defeat_screen()
+
+# Show Victory Screen Function
+def show_victory_screen():
+    victory_image = load_image('path/to/victory_screen.png')
+    screen.blit(victory_image, (0, 0))
+    pygame.display.flip()
+    time.sleep(5)  # Display for 5 seconds
+
+# Show Defeat Screen Function
+def show_defeat_screen():
+    defeat_image = load_image('path/to/defeat_screen.png')
+    screen.blit(defeat_image, (0, 0))
+    pygame.display.flip()
+    time.sleep(5)  # Display for 5 seconds
 
 # Main Game Loop
 background_music.play(-1)
@@ -118,11 +166,15 @@ while running:
             move_lilith()
 
     collect_masks()
+    trigger_traps()
     if len(collected_masks) == len(mask_images):
         final_showdown()
 
     screen.fill(BLACK)
     draw_game_elements()
+    for trap in traps:
+        screen.blit(trap_image, trap)
+    display_score()
     pygame.display.flip()
 
 pygame.quit()
