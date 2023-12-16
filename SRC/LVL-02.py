@@ -28,14 +28,34 @@ width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Ramburger Hunt")
 
-# Load images (Replace with your own assets)
-kael_image = pygame.image.load('kael_sprite.png')
-ram_image = pygame.image.load('ram_sprite.png')
-background_image = pygame.image.load('forest_background.png')
+# Load images with error handling
+def load_image(image_path):
+    try:
+        return pygame.image.load(image_path)
+    except pygame.error as e:
+        show_debug_message(f"Error loading image {image_path}: {e}")
+        return None
+
+# Display debug message on the screen
+def show_debug_message(message):
+    debug_daemon_image = load_image('debug_daemon.png')
+    screen.blit(debug_daemon_image, (50, 50))
+    font = pygame.font.Font(None, 36)
+    text = font.render(message, True, (255, 0, 0))
+    screen.blit(text, (100, 150))
+    pygame.display.flip()
+    time.sleep(5)
+
+# Load images
+kael_image = load_image('kael_sprite.png')
+ram_image = load_image('ram_sprite.png')
+background_image = load_image('forest_background.png')
+powerup_image = load_image('powerup_sprite.png')  # Power-up sprite
 
 # Game variables
 kael_position = [width // 2, height // 2]
 ram_positions = [[random.randrange(width), random.randrange(height)] for _ in range(5)]
+powerup_positions = [[random.randrange(width), random.randrange(height)] for _ in range(3)]  # Power-up positions
 caught_rams = 0
 start_time = time.time()
 game_duration = 300  # 5 minutes in seconds
@@ -47,6 +67,20 @@ font = pygame.font.Font(None, 36)
 def draw_text(text, position):
     text_surface = font.render(text, True, (255, 255, 255))
     screen.blit(text_surface, position)
+
+def manage_stamina():
+    global kael_stamina
+    # Decrease stamina as Kael moves
+    kael_stamina -= 0.1  # Adjust the rate as needed
+    kael_stamina = max(kael_stamina, 0)
+
+def collect_powerup():
+    global kael_stamina
+    for powerup_position in powerup_positions[:]:
+        if pygame.Rect(kael_position[0], kael_position[1], kael_image.get_width(), kael_image.get_height()).colliderect(
+            pygame.Rect(powerup_position[0], powerup_position[1], powerup_image.get_width(), powerup_image.get_height())):
+            powerup_positions.remove(powerup_position)
+            kael_stamina = min(kael_stamina + 20, 100)  # Increase stamina
 
 # Main game loop
 running = True
@@ -66,8 +100,8 @@ while running:
     if keys[pygame.K_DOWN]:
         kael_position[1] += 5
 
-    # Update Kael's stamina
-    # TODO: Decrease stamina as Kael moves and increase it when he rests
+    manage_stamina()
+    collect_powerup()
 
     # Ram catching logic
     for ram_position in ram_positions[:]:
@@ -75,12 +109,14 @@ while running:
             pygame.Rect(ram_position[0], ram_position[1], ram_image.get_width(), ram_image.get_height())):
             ram_positions.remove(ram_position)
             caught_rams += 1
-            # TODO: Launch hamburger transformation mini-game here
+            # Launch hamburger transformation mini-game
 
     # Draw everything
     screen.blit(background_image, (0, 0))
     for ram_position in ram_positions:
         screen.blit(ram_image, ram_position)
+    for powerup_position in powerup_positions:
+        screen.blit(powerup_image, powerup_position)  # Draw power-ups
     screen.blit(kael_image, kael_position)
 
     # Display caught rams, timer, and Kael's stamina
@@ -91,7 +127,13 @@ while running:
     draw_text(f"Stamina: {kael_stamina}", (10, 70))
 
     # Check for game end conditions
-    # TODO: Define victory and loss conditions
+    if remaining_time == 0 or k
+    if remaining_time == 0 or kael_stamina <= 0:
+        show_debug_message("Game Over! Try Again.")
+        running = False
+    elif caught_rams == len(ram_positions):
+        show_debug_message("Congratulations! You've won!")
+        running = False
 
     pygame.display.flip()
 
