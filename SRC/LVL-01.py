@@ -8,7 +8,7 @@ import random
 pygame.init()
 
 # Set up the display
-width, height = 640, 480
+width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Anammelech's Journey")
 
