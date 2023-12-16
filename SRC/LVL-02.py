@@ -36,6 +36,7 @@ ram_positions = [[random.randrange(width), random.randrange(height)] for _ in ra
 caught_rams = 0
 start_time = time.time()
 game_duration = 300  # 5 minutes in seconds
+kael_stamina = 100  # Kael's initial stamina
 
 # Font for displaying text
 font = pygame.font.Font(None, 36)
@@ -62,12 +63,16 @@ while running:
     if keys[pygame.K_DOWN]:
         kael_position[1] += 5
 
+    # Update Kael's stamina
+    # TODO: Decrease stamina as Kael moves and increase it when he rests
+
     # Ram catching logic
     for ram_position in ram_positions[:]:
         if pygame.Rect(kael_position[0], kael_position[1], kael_image.get_width(), kael_image.get_height()).colliderect(
             pygame.Rect(ram_position[0], ram_position[1], ram_image.get_width(), ram_image.get_height())):
             ram_positions.remove(ram_position)
             caught_rams += 1
+            # TODO: Launch hamburger transformation mini-game here
 
     # Draw everything
     screen.blit(background_image, (0, 0))
@@ -75,16 +80,15 @@ while running:
         screen.blit(ram_image, ram_position)
     screen.blit(kael_image, kael_position)
 
-    # Display caught rams and timer
+    # Display caught rams, timer, and Kael's stamina
     elapsed_time = time.time() - start_time
     remaining_time = max(game_duration - int(elapsed_time), 0)
     draw_text(f"Rams Caught: {caught_rams}", (10, 10))
     draw_text(f"Time Left: {remaining_time}", (10, 40))
+    draw_text(f"Stamina: {kael_stamina}", (10, 70))
 
-    # Check for game end
-    if remaining_time <= 0:
-        print("Time's up! Game over.")
-        running = False
+    # Check for game end conditions
+    # TODO: Define victory and loss conditions
 
     pygame.display.flip()
 
