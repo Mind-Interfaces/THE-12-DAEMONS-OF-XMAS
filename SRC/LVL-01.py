@@ -22,21 +22,46 @@ import random
 import math
 import time
 
-# Initialize Pygame
+# Initialize Pygame and Set Up Display
 pygame.init()
-
-# Set up the display
 width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Anammelech's Journey")
 
-# Load images
-player_image = pygame.image.load('anammelech_sprite.png')
-tree_image = pygame.image.load('christmas_tree.png')
-background_image = pygame.image.load('winter_forest.png')
-santa_image = pygame.image.load('santa_sprite.png')
+# Load images with error handling
+def load_image(image_path):
+    try:
+        return pygame.image.load(image_path)
+    except pygame.error as e:
+        show_debug_message(f"Error loading image {image_path}: {e}")
+        return None
 
-# Game variables
+# Load sound effects with error handling
+def load_sound(sound_path):
+    try:
+        return pygame.mixer.Sound(sound_path)
+    except pygame.error as e:
+        show_debug_message(f"Error loading sound {sound_path}: {e}")
+        return None
+
+# Display debug message on the screen
+def show_debug_message(message):
+    debug_daemon_image = pygame.image.load('debug_daemon.png')
+    screen.blit(debug_daemon_image, (50, 50))
+    font = pygame.font.Font(None, 36)
+    text = font.render(message, True, (255, 0, 0))
+    screen.blit(text, (100, 150))
+    pygame.display.flip()
+    time.sleep(5)
+
+# Load images and sound
+player_image = load_image('anammelech_sprite.png')
+tree_image = load_image('christmas_tree.png')
+background_image = load_image('winter_forest.png')
+santa_image = load_image('santa_sprite.png')
+explosion_sound = load_sound('explosion_sound.wav')  # For tree ignition
+
+# Game Variables
 player_position = [width // 2, height // 2]
 tree_positions = [[random.randrange(width), random.randrange(height)] for _ in range(10)]
 santa_position = [random.randrange(width), random.randrange(height)]
@@ -48,11 +73,12 @@ start_time = time.time()
 # Font for displaying text
 font = pygame.font.Font(None, 36)
 
+# Movement and collision functions
 def move_santa():
     global santa_position, santa_direction
     santa_position[0] += santa_direction[0]
     santa_position[1] += santa_direction[1]
-    if random.random() < 0.01:  # Adjust probability as needed
+    if random.random() < 0.01:
         santa_direction = random.choice([(santa_speed, 0), (-santa_speed, 0), (0, santa_speed), (0, -santa_speed)])
 
 def check_collision(player_pos, other_pos, distance=20):
@@ -80,17 +106,19 @@ while running:
     if keys[pygame.K_DOWN]:
         player_position[1] += 5
 
+    # Santa movement
     move_santa()
 
     # Check for setting trees on fire
-    for tree_position in tree_positions:
+    for tree_position in tree_positions[:]:
         if check_collision(player_position, tree_position):
             tree_positions.remove(tree_position)
             score += 1
+            explosion_sound.play()  # Play explosion sound on tree ignition
 
     # Collision with Santa Claus
     if check_collision(player_position, santa_position):
-        print("Caught by Santa! Game Over.")
+        show_debug_message("Caught by Santa! Game Over.")
         running = False
 
     # Draw everything
