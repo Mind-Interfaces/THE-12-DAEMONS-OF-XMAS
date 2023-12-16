@@ -1,6 +1,19 @@
 # Anamelech Mini Game .. Exploding Christmas Trees
 # 🏗️ Exploration of themes related to surprise and the challenge of balancing greed with charity.
-
+"""
+Once upon a time, in a world where darkness still held sway over light, there lived a young girl named Lily. 
+She was known far and wide for her boundless curiosity and innocent spirit, traits that often landed her in trouble despite her mother's best efforts to keep her safe. 
+On one particularly stormy night, as Lily defied her mother once again by venturing outside after bedtime, she stumbled upon something truly extraordinary – a grove filled with trees unlike any she had ever seen. 
+They were tall and majestic, adorned with colorful lights and sparkling ornaments, yet there was an air of menace surrounding them that made her blood run cold. 
+Despite her instincts screaming at her to flee, Lily couldn't tear her eyes away from these enchanting yet ominous creatures. 
+That's when Anamelech appeared before her, cloaked in shadows and shrouded in mystery. He offered Lily a deal: 
+if she could successfully ignite all of the trees without being caught by Santa Claus himself, he would grant her one wish of her choosing. 
+Tempted by the prospect of having anything she desired, Lily accepted his challenge without hesitation. 
+And thus began a thrilling game of cat and mouse through the darkened woods, pitting Lily's wits against Santa's omniscience and Anamelech's sinister machinations. 
+With each tree that fell victim to flames, Lily drew closer to fulfilling her end of the bargain. 
+But as time wore on and exhaustion set in, she found herself questioning whether the price she might pay for achieving her desires would be worth the risk. 
+Only time would tell if Lily would emerge victorious or succumb to the lures of corruption laid out by Anamelech, the Dark Christmas Tree Angel.
+"""
 import pygame
 import random
 
