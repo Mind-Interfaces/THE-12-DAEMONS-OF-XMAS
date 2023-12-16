@@ -26,10 +26,15 @@ screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Baal's Labyrinth of Desires")
 
-# Colors
+# Colors and Assets
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (100, 100, 100)
+PINK = (255, 0, 255)
+
+player_sprite = pygame.image.load('path/to/player_sprite.png')
+wall_tile = pygame.image.load('path/to/wall_tile.png')
+background_music = pygame.mixer.Sound('path/to/background_music.wav')
 
 # Maze settings
 maze_rows = 10
@@ -42,19 +47,14 @@ player_pos = [0, 0]
 player_color = WHITE
 player_size = cell_size // 2
 
-# Font setup
+# Font and Questions
 font = pygame.font.Font(None, 36)
-
-# Sample questions
-questions = [
-    # ... List of questions
-]
-
-# Game variables
+questions = [{"text": "True or False: ...", "correct_option": "True", "options": ["True", "False"]}]
 current_question = None
 score = 0
-baal_hint_active = False
-difficulty_level = 1
+game_over = False
+start_time = pygame.time.get_ticks()
+time_limit = 300000  # 5 minutes in milliseconds
 
 def load_image(image_path):
     try:
@@ -116,11 +116,18 @@ def move_player_iso(key):
 
 def check_question():
     global current_question, score
-    # Check for question encounter logic
+    if player_pos == [maze_columns - 1, maze_rows - 1]:
+        current_question = random.choice(questions)
+        present_question(current_question)
 
 def present_question(question):
-    global score, baal_hint_active
-    # Display a question and handle player input for the answer
+    global score, game_over
+    # Simple question routine (to be expanded later)
+    answer = input(question["text"] + " " + "/".join(question["options"]) + ": ")
+    if answer.lower() == question["correct_option"].lower():
+        score += 1
+    else:
+        game_over = True
 
 def draw_text(text, position):
     text_surface = font.render(text, True, WHITE)
@@ -129,33 +136,35 @@ def draw_text(text, position):
 def draw_score():
     draw_text(f"Score: {score}", (10, 10))
 
+def check_time():
+    global game_over
+    if pygame.time.get_ticks() - start_time > time_limit:
+        game_over = True
+
 generate_maze()
+background_music.play(-1)
 
-
-# Main game loop
 running = True
 while running:
-    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            move_player(event.key)
+            move_player_iso(event.key)
 
-    # Game logic
+    if game_over:
+        show_debug_message("Game Over")
+        break
+
     check_question()
+    check_time()
 
-    # Clear the screen
     screen.fill(BLACK)
-
-    # Draw the maze, player, and score
-    draw_maze()
-    draw_player()
+    draw_maze_iso()
+    draw_player_iso()
     draw_score()
 
-    # Update the display
     pygame.display.flip()
 
-# Quit Pygame
 pygame.quit()
 sys.exit()
