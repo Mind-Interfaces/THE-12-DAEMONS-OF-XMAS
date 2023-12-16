@@ -1,5 +1,8 @@
 # Anamelech Mini Game .. Exploding Christmas Trees
 # 🏗️ Exploration of themes related to surprise and the challenge of balancing greed with charity.
+# 🏗️ Anamelech tests humanity's ability to balance greed and generosity through surprises.
+# 🚧 Anamelech's test revolves around the balance between greed and generosity. 
+# 🚧 It underscores the perennial struggle of human beings to strike an equilibrium between self-interest and benevolence, a test that transcends time.
 """
 Once upon a time, in a world where darkness still held sway over light, there lived a young girl named Lily. 
 She was known far and wide for her boundless curiosity and innocent spirit, traits that often landed her in trouble despite her mother's best efforts to keep her safe. 
