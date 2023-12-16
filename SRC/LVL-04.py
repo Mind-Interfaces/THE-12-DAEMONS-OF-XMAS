@@ -1,5 +1,8 @@
 # Lucifuge Mini Game ...
 # 🏗️ Delving into fear and the battle between sloth and diligence.
+# 🏗️ Lucifuge instills fear and laziness, testing humanity's determination against sloth and diligence.
+# 🚧 Lucifuge's test, which involves fear and laziness, probes into the depths of human determination and the perennial struggle against sloth. 
+# 🚧 It highlights the significance of diligence in the face of fear-induced inertia.
 """
 During a snow-covered winter solstice celebration. 
 Guests dressed in festive attire gather outside to partake in traditional festivities such as feasting and dancing. 
