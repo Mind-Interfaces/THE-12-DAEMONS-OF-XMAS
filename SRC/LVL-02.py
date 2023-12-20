@@ -38,7 +38,7 @@ def load_image(image_path):
 
 # Display debug message on the screen
 def show_debug_message(message):
-    debug_daemon_image = load_image('debug_daemon.png')
+    debug_daemon_image = load_image('../IMG/DEBUG/debug_daemon.png')
     screen.blit(debug_daemon_image, (50, 50))
     font = pygame.font.Font(None, 36)
     text = font.render(message, True, (255, 0, 0))
@@ -47,10 +47,10 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images
-kael_image = load_image('kael_sprite.png')
-ram_image = load_image('ram_sprite.png')
-background_image = load_image('forest_background.png')
-powerup_image = load_image('powerup_sprite.png')  # Power-up sprite
+kael_image = load_image('../IMG/CHAR/kael_sprite.png')
+ram_image = load_image('../IMG/NPC/ram_sprite.png')
+background_image = load_image('../IMG/BACKGROUND/forest_background.png')
+powerup_image = load_image('../IMG/SPRITE/powerup_sprite.png')  # Power-up sprite
 
 # Game variables
 kael_position = [width // 2, height // 2]
@@ -127,7 +127,7 @@ while running:
     draw_text(f"Stamina: {kael_stamina}", (10, 70))
 
     # Check for game end conditions
-    if remaining_time == 0 or k
+    # if remaining_time == 0 or kael_stamina //FRAG?
     if remaining_time == 0 or kael_stamina <= 0:
         show_debug_message("Game Over! Try Again.")
         running = False
