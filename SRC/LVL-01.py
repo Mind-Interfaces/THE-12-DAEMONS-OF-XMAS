@@ -46,7 +46,7 @@ def load_sound(sound_path):
 
 # Display debug message on the screen
 def show_debug_message(message):
-    debug_daemon_image = pygame.image.load('debug_daemon.png')
+    debug_daemon_image = pygame.image.load('../IMG/DEBUG/debug_daemon.png')
     screen.blit(debug_daemon_image, (50, 50))
     font = pygame.font.Font(None, 36)
     text = font.render(message, True, (255, 0, 0))
@@ -55,11 +55,11 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images and sound
-player_image = load_image('anammelech_sprite.png')
-tree_image = load_image('christmas_tree.png')
-background_image = load_image('winter_forest.png')
-santa_image = load_image('santa_sprite.png')
-explosion_sound = load_sound('explosion_sound.wav')  # For tree ignition
+player_image = load_image('../IMG/BOSS/anammelech_sprite.png')
+tree_image = load_image('../IMG/TREE/christmas_tree.png')
+background_image = load_image('../IMG/BACKGROUND/winter_forest.png')
+santa_image = load_image('../IMG/NPC/santa_sprite.png')
+explosion_sound = load_sound('../BGM/SFX/explosion_sound.wav')  # For tree ignition / TODO STUD
 
 # Game Variables
 player_position = [width // 2, height // 2]
