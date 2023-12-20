@@ -9,9 +9,16 @@ import threading
 
 # Initialize Pygame and Gradio Clients
 pygame.init()
-image_client = Client("https://linaqruf-animagine-xl.hf.space/")
-chat_client = Client("https://osanseviero-mistral-super-fast.hf.space/")
-# chat_client = Client("https://infer-so-mistralai-mixtral-8x7b-v0-1.hf.space/--replicas/hvt2z/")
+
+
+
+# FastAPI https://f6435fb8424218dbd3.gradio.live/docs
+image_client = Client("https://f6435fb8424218dbd3.gradio.live/")
+# image_client = Client("https://linaqruf-animagine-xl.hf.space/")
+
+# Gradio https://ab92da00650e4b920d.gradio.live/docs
+chat_client = Client("https://ink-concert-snapshot-engage.trycloudflare.com/")
+# chat_client = Client("https://osanseviero-mistral-super-fast.hf.space/")
 
 button_states = {
     'F1': False,
