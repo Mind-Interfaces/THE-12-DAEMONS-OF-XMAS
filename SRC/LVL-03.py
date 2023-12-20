@@ -32,9 +32,9 @@ BLACK = (0, 0, 0)
 GREY = (100, 100, 100)
 PINK = (255, 0, 255)
 
-player_sprite = pygame.image.load('path/to/player_sprite.png')
-wall_tile = pygame.image.load('path/to/wall_tile.png')
-background_music = pygame.mixer.Sound('path/to/background_music.wav')
+player_sprite = pygame.image.load('../IMG/CHAR/player_sprite.png')
+wall_tile = pygame.image.load('../IMG/TILE/wall_tile.png')
+background_music = pygame.mixer.Sound('../BGM/LVL-03/background_music.wav')
 
 # Maze settings
 maze_rows = 10
@@ -64,7 +64,7 @@ def load_image(image_path):
         return None
 
 def show_debug_message(message):
-    debug_daemon_image = load_image('debug_daemon.png')
+    debug_daemon_image = load_image('../IMG/DEBUG/debug_daemon.png')
     screen.blit(debug_daemon_image, (50, 50))
     font = pygame.font.Font(None, 36)
     text = font.render(message, True, (255, 0, 0))
