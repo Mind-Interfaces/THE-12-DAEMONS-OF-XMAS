@@ -45,7 +45,7 @@ def load_sound(sound_path):
 
 # Debug Daemon for error handling
 def show_debug_message(message):
-    debug_daemon_image = load_image('path/to/debug_daemon.png')
+    debug_daemon_image = load_image('../IMG/DEBUG/debug_daemon.png')
     screen.blit(debug_daemon_image, (50, 50))
     text = font.render(message, True, (255, 0, 0))
     screen.blit(text, (100, 150))
@@ -53,22 +53,22 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Game assets
-lilith_image = load_image('path/to/lilith_sprite.png')
+lilith_image = load_image('../IMG/CHAR/lilith_sprite.png')
 mask_images = {
-    'Famine': load_image('path/to/famine_mask.png'),
-    'War': load_image('path/to/war_mask.png'),
-    'Pestilence': load_image('path/to/pestilence_mask.png'),
-    'Death': load_image('path/to/death_mask.png')
+    'Famine': load_image('../IMG/SPRITE/famine_mask.png'),
+    'War': load_image('../IMG/SPRITE/war_mask.png'),
+    'Pestilence': load_image('../IMG/SPRITE/pestilence_mask.png'),
+    'Death': load_image('../IMG/SPRITE/death_mask.png')
 }
-background_image = load_image('path/to/tower_background.png')
-background_music = load_sound('path/to/background_music.ogg')
-mask_pickup_sound = load_sound('path/to/mask_pickup_sound.ogg')
-final_showdown_music = load_sound('path/to/final_showdown_music.ogg')
+background_image = load_image('../IMG/BACKGROUND/tower_background.png')
+background_music = load_sound('../BGM/LVL-04/background_music.wav')
+mask_pickup_sound = load_sound('../BGM/SFX/mask_pickup_sound.wav')
+final_showdown_music = load_sound('../BGM/SFX/final_showdown_music.wav')
 
 # Additional Game Variables
 traps = []  # Coordinates for traps
-trap_image = load_image('path/to/trap_sprite.png')
-trap_triggered_sound = load_sound('path/to/trap_sound.ogg')
+trap_image = load_image('../IMG/SRITE/trap_sprite.png')
+trap_triggered_sound = load_sound('../BGM/SFX/trap_sound.wav')
 score = 0
 
 # Generate Traps
@@ -143,14 +143,14 @@ def final_showdown():
 
 # Show Victory Screen Function
 def show_victory_screen():
-    victory_image = load_image('path/to/victory_screen.png')
+    victory_image = load_image('../IMG/BACKGROUND/victory_screen.png')
     screen.blit(victory_image, (0, 0))
     pygame.display.flip()
     time.sleep(5)  # Display for 5 seconds
 
 # Show Defeat Screen Function
 def show_defeat_screen():
-    defeat_image = load_image('path/to/defeat_screen.png')
+    defeat_image = load_image('../IMG/BACKGROUND/defeat_screen.png')
     screen.blit(defeat_image, (0, 0))
     pygame.display.flip()
     time.sleep(5)  # Display for 5 seconds
