@@ -81,7 +81,8 @@ def generate_image(prompt):
         response = requests.post(sd_api_url, json=data)
         if response.status_code == 200:
             r = response.json()
-            log(f'API response received: {r}')  # Log the entire response
+            # log(f'API response received: {r}')  # Log the entire response
+            log(f'API response received from SD.')  # Log the entire response
 
             # Decode the first image in the 'images' array, which is base64-encoded
             if 'images' in r and r['images']:
@@ -130,6 +131,10 @@ def chat(message):
     log("Sending text to query_model...")
     result = query_model(message)
     log(f"Response received: {result}")
+    # New logic to update background based on response
+    global prompt  # Use the global prompt variable
+    prompt += ', ' + result.strip()  # Append the result to the prompt
+    start_background_image_generation(prompt)  # Start generating new background
     return result
 
 
