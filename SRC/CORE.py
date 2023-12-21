@@ -1,3 +1,6 @@
+# THE 12 DAEMONS OF XMAS
+# Primary Game Interface
+
 from datetime import datetime
 import base64
 import io
@@ -13,9 +16,7 @@ from gradio_client import Client
 # Initialize Pygame
 pygame.init()
 
-# Initialize Pygame and Gradio Clients
-pygame.init()
-
+# Global variables for buttons
 button_states = {
     'F1': False,
     'F2': False,
@@ -68,7 +69,10 @@ def generate_image(prompt):
     sd_api_url = 'https://f6435fb8424218dbd3.gradio.live/sdapi/v1/txt2img'
 
     # Prepare the data payload for the API request
-    data = {'prompt': prompt, 'steps': 20}  # Number of steps can be adjusted as needed
+    data = {'prompt': prompt,
+            'width': 1344,
+            'height': 768,
+            'steps': 20}  # Number of steps can be adjusted as needed
 
     # Set background_ready to False right after the API call
     background_ready = False
