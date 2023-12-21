@@ -4,7 +4,7 @@ import requests
 
 def query_model(prompt):
     # Updated API endpoint
-    endpoint = "https://ink-concert-snapshot-engage.trycloudflare.com/v1/completions"
+    endpoint = "https://soil-editorials-tomatoes-personally.trycloudflare.com/v1/completions"
 
     # Prepare the data payload
     data = {
