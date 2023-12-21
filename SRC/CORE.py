@@ -1,24 +1,20 @@
 from datetime import datetime
-from gradio_client import Client
 from PIL import Image
-
 import pygame
 import sys
 import textwrap
 import threading
+import requests
+import gradio as gr
+from gradio_client import Client
+
+# Initialize Pygame
+pygame.init()
 
 # Initialize Pygame and Gradio Clients
 pygame.init()
 
-
-
-# FastAPI https://f6435fb8424218dbd3.gradio.live/docs
-image_client = Client("https://f6435fb8424218dbd3.gradio.live/")
-# image_client = Client("https://linaqruf-animagine-xl.hf.space/")
-
-# Gradio https://ab92da00650e4b920d.gradio.live/docs
-chat_client = Client("https://ink-concert-snapshot-engage.trycloudflare.com/")
-# chat_client = Client("https://osanseviero-mistral-super-fast.hf.space/")
+image_client = Client("https://linaqruf-animagine-xl.hf.space/--replicas/kfjp7/")
 
 button_states = {
     'F1': False,
@@ -68,24 +64,17 @@ def generate_image(prompt):
     global background, background_ready
     # log(f"Starting image generation with prompt: {prompt} ")
     log("Sending image prompt to remote API...")
-    file_path = image_client.predict(
-        prompt, "Ugly, Blurry, Hazy, Low Quality",
-        prompt, "Unrealistic, Underage, 2Girls",
-        True, 1000000,
-        1344, 768,
-        1344, 768,
-        1344, 768,
-        10, 40,
-        False, 0,
-        False, False,
-        api_name="/run"
-    )
+#    file_path = image_client.predict(
+#        prompt,
+#        False,
+#        api_name="/run"
+#    )
     # Set background_ready to False right after the API call
     background_ready = False
-    log(f"API response received: {file_path}")
+#    log(f"API response received: {file_path}")
     try:
         with background_lock:
-            image = Image.open(file_path)
+            image = Image.open("logo.png")  # image = Image.open(file_path) // PATCH BACKGROUND HERE
             background = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
             background_ready = True
             log("Background image successfully loaded and updated.")
@@ -105,17 +94,22 @@ def start_background_image_generation(prompt):
     log("Started new background image generation thread.")
 
 
+# New Gradio chat handler function
+def query_model(prompt):
+    endpoint = "https://ink-concert-snapshot-engage.trycloudflare.com/v1/completions"
+    data = {"prompt": prompt, "max_tokens": 200, "temperature": 0.7, "top_p": 0.9, "seed": 666}
+    response = requests.post(endpoint, json=data)
+    if response.status_code == 200:
+        return response.json()["choices"][0]["text"]
+    else:
+        return "Error: " + str(response.status_code)
+
+
+# Modify the chat function to use query_model
 def chat(message):
-    log("Sending text to remote API...")
-    result = chat_client.predict(
-        message,
-        0.9,
-        256,
-        0.9,
-        1.2,
-        api_name="/chat"
-    )
-    log(f"API response received: {result}")
+    log("Sending text to query_model...")
+    result = query_model(message)
+    log(f"Response received: {result}")
     return result
 
 
@@ -150,11 +144,11 @@ def toggle_command():
     global prompt
     was_updated = False
 
-    if button_states['O'] and "(1girl:1.0), " not in prompt:
-        prompt = "(1girl:1.0), " + prompt
+    if button_states['O'] and "(Christmas:1.0), " not in prompt:
+        prompt = "(Christmas:1.0), " + prompt
         was_updated = True
-    elif not button_states['O'] and "(1girl:1.0), " in prompt:
-        prompt = prompt.replace("(1girl:1.0), ", "")
+    elif not button_states['O'] and "(Christmas:1.0), " in prompt:
+        prompt = prompt.replace("(Christmas:1.0), ", "")
         was_updated = True
 
     if was_updated:
@@ -239,7 +233,7 @@ pygame.display.set_caption("CORE")
 log("Game window initialized.")
 
 # Initial prompt setup
-prompt = "(Lobby:1.0), (Waiting Area:1.0), (Professional Lighting:1.0)"
+prompt = "(8-Bit:1.0), (Pixel:1.0), (Christmas Tree:1.0)"
 
 # Input box and chat history
 input_box = pygame.Rect(100, 650, 140, 32)
@@ -277,8 +271,8 @@ while running:
             if event.key == pygame.K_RETURN:
                 log("Enter key pressed. Sending chat message.")
                 response = chat(user_input)
-                chat_history.append("You: " + user_input)
-                chat_history.append("Mistral: " + str(response))
+                chat_history.append("PLAYER: " + user_input)
+                chat_history.append("DAEMON: " + str(response))
                 user_input = ''
             elif event.key == pygame.K_BACKSPACE:
                 user_input = user_input[:-1]
