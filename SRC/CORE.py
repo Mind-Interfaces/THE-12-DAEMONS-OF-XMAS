@@ -64,15 +64,22 @@ def draw_transparent_background(surface, rect, color, alpha):
 def generate_image(prompt):
     global background, background_ready
     log('Sending image prompt to Stable Diffusion API...')
-
+    log(f'{prompt}') 
     # Define the API URL
     sd_api_url = 'https://f6435fb8424218dbd3.gradio.live/sdapi/v1/txt2img'
 
     # Prepare the data payload for the API request
     data = {'prompt': prompt,
+            "sd_model_checkpoint": "sd_xl_turbo_1.0_fp16.safetensors [e869ac7d69]",
             'width': 1344,
             'height': 768,
-            'steps': 20}  # Number of steps can be adjusted as needed
+            'steps': 10}  # Number of steps can be adjusted as needed
+
+    # override_settings = {
+    #    "filter_nsfw": True,
+    #     "CLIP_stop_at_last_layers": 2,
+    # }
+    # data["override_settings"] = override_settings
 
     # Set background_ready to False right after the API call
     background_ready = False
@@ -169,11 +176,11 @@ def toggle_command():
     global prompt
     was_updated = False
 
-    if button_states['O'] and "(Christmas:1.0), " not in prompt:
-        prompt = "(Christmas:1.0), " + prompt
+    if button_states['O'] and "(White Outline:1.0), " not in prompt:
+        prompt = "(White Outline:1.0), " + prompt
         was_updated = True
-    elif not button_states['O'] and "(Christmas:1.0), " in prompt:
-        prompt = prompt.replace("(Christmas:1.0), ", "")
+    elif not button_states['O'] and "(White Outline:1.0), " in prompt:
+        prompt = prompt.replace("(White Outline:1.0), ", "")
         was_updated = True
 
     if was_updated:
@@ -187,11 +194,11 @@ def toggle_F1():
     was_updated = False
 
     # Implement specific action for button F1
-    if button_states['F1'] and "(Anime Style:1.0), " not in prompt:
-        prompt = "(Anime Style:1.0), " + prompt
+    if button_states['F1'] and "(Black Background:1.0), " not in prompt:
+        prompt = "(Black Background:1.0), " + prompt
         was_updated = True
-    elif not button_states['F1'] and "(Anime Style:1.0), " in prompt:
-        prompt = prompt.replace("(Anime Style:1.0), ", "")
+    elif not button_states['F1'] and "(Black Background:1.0), " in prompt:
+        prompt = prompt.replace("(Black Background:1.0), ", "")
         was_updated = True
 
     if was_updated:
@@ -204,11 +211,11 @@ def toggle_F2():
     was_updated = False
 
     # Implement specific action for button F2
-    if button_states['F2'] and "(Intense Eye Contact:1.0), " not in prompt:
-        prompt = "(Intense Eye Contact:1.0), " + prompt
+    if button_states['F2'] and "(TCOAAL:1.0), " not in prompt:
+        prompt = "(TCOAAL:1.0), " + prompt
         was_updated = True
-    elif not button_states['F2'] and "(Intense Eye Contact:1.0), " in prompt:
-        prompt = prompt.replace("(Intense Eye Contact:1.0), ", "")
+    elif not button_states['F2'] and "(TCOAAL:1.0), " in prompt:
+        prompt = prompt.replace("(TCOAAL:1.0), ", "")
         was_updated = True
 
     if was_updated:
@@ -221,11 +228,11 @@ def toggle_F3():
     was_updated = False
 
     # Implement specific action for button F3 (NSFW) APPEND
-    if button_states['F3'] and ", (Professional Lighting:1.0)" not in prompt:
-        prompt += ", (Professional Lighting:1.0)"
+    if button_states['F3'] and ",  <lora:coffin_xdsl_x80_v0.3:0.8>" not in prompt:
+        prompt += ",  <lora:coffin_xdsl_x80_v0.3:0.8>"
         was_updated = True
-    elif not button_states['F3'] and ", (Professional Lighting:1.0)" in prompt:
-        prompt = prompt.replace(", (Professional Lighting:1.0)", "")
+    elif not button_states['F3'] and ",  <lora:coffin_xdsl_x80_v0.3:0.8>" in prompt:
+        prompt = prompt.replace(",  <lora:coffin_xdsl_x80_v0.3:0.8>", "")
         was_updated = True
 
     if was_updated:
@@ -258,7 +265,7 @@ pygame.display.set_caption("CORE")
 log("Game window initialized.")
 
 # Initial prompt setup
-prompt = "(8-Bit:1.0), (Pixel:1.0), (Christmas Tree:1.0)"
+prompt = "Christmas,  <lora:coffin_xdsl_x80_v0.3:1>"
 
 # Input box and chat history
 input_box = pygame.Rect(100, 650, 140, 32)
