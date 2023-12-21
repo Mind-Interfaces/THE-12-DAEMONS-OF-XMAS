@@ -124,7 +124,7 @@ def start_background_image_generation(prompt):
 
 # New Gradio chat handler function
 def query_model(prompt):
-    endpoint = "https://ink-concert-snapshot-engage.trycloudflare.com/v1/completions"
+    endpoint = "https://soil-editorials-tomatoes-personally.trycloudflare.com/v1/completions"
     data = {"prompt": prompt, "max_tokens": 200, "temperature": 0.7, "top_p": 0.9, "seed": 666}
     response = requests.post(endpoint, json=data)
     if response.status_code == 200:
