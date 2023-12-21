@@ -1,4 +1,6 @@
 from datetime import datetime
+import base64
+import io
 from PIL import Image
 import pygame
 import sys
@@ -13,8 +15,6 @@ pygame.init()
 
 # Initialize Pygame and Gradio Clients
 pygame.init()
-
-image_client = Client("https://linaqruf-animagine-xl.hf.space/--replicas/kfjp7/")
 
 button_states = {
     'F1': False,
@@ -62,24 +62,40 @@ def draw_transparent_background(surface, rect, color, alpha):
 
 def generate_image(prompt):
     global background, background_ready
-    # log(f"Starting image generation with prompt: {prompt} ")
-    log("Sending image prompt to remote API...")
-#    file_path = image_client.predict(
-#        prompt,
-#        False,
-#        api_name="/run"
-#    )
+    log('Sending image prompt to Stable Diffusion API...')
+
+    # Define the API URL
+    sd_api_url = 'https://f6435fb8424218dbd3.gradio.live/sdapi/v1/txt2img'
+
+    # Prepare the data payload for the API request
+    data = {'prompt': prompt, 'steps': 20}  # Number of steps can be adjusted as needed
+
     # Set background_ready to False right after the API call
     background_ready = False
-#    log(f"API response received: {file_path}")
+
     try:
-        with background_lock:
-            image = Image.open("logo.png")  # image = Image.open(file_path) // PATCH BACKGROUND HERE
-            background = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
-            background_ready = True
-            log("Background image successfully loaded and updated.")
+        response = requests.post(sd_api_url, json=data)
+        if response.status_code == 200:
+            r = response.json()
+            log(f'API response received: {r}')  # Log the entire response
+
+            # Decode the first image in the 'images' array, which is base64-encoded
+            if 'images' in r and r['images']:
+                base64_image = r['images'][0]
+                image_data = base64.b64decode(base64_image)
+                with background_lock:
+                    image = Image.open(io.BytesIO(image_data))
+                    background = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
+                    background_ready = True
+                    log('Background image successfully loaded and updated.')
+            else:
+                log('No image data found in the API response.')
+        else:
+            log(f'API Error: Status Code {response.status_code} with response: {response.text}')
+            background_ready = False
     except Exception as e:
-        log(f"Failed to load image from path. Error: {e}")
+        log(f'Exception occurred during API call or image processing: {e}')
+        background_ready = False
 
 
 def start_background_image_generation(prompt):
