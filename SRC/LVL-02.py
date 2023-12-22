@@ -79,7 +79,7 @@ def manage_stamina():
     global lily_stamina
     # Decrease stamina as Lily moves
     lily_stamina -= 0.1  # Adjust the rate as needed
-    lily_stamina = max(kael_stamina, 0)
+    lily_stamina = max(lily_stamina, 0)
 
 def collect_powerup():
     global lily_stamina
