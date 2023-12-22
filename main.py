@@ -24,7 +24,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
     
-    levels = [INTRO, CORE, LVL-01, CORE, LVL-02, CORE, LVL-03, CORE, LVL-04, OUTRO, DEBUG]  # List of levels
+    levels = [INTRO, CORE, LVL-01, CORE, LVL-02, CORE, LVL-03, CORE, LVL-04, OVER, DEBUG]  # List of levels
     current_level = 0
 
     while True:
