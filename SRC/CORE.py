@@ -27,9 +27,9 @@ button_states = {
 # Pygame Window Configuration
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 BG_COLOR = (30, 30, 30)
-FONT = pygame.font.Font('font.ttf', 36)
+FONT = pygame.font.Font('../IMG/font.ttf', 36)
 FONT_COLOR = (255, 255, 255)
-icon = pygame.image.load('logo.png')
+icon = pygame.image.load('../IMG/logo.png')
 pygame.display.set_icon(icon)
 
 # Global variable for background
