@@ -4,17 +4,16 @@
 # 🚧 Astaroth's temptation pertains to the enduring battle against gluttony and the importance of temperance in the face of excessive indulgence. 
 # 🚧 It serves as a timeless reminder of the need for moderation.
 """
-In another realm, far removed from Lily's magical adventure, lived a fearsome hunter known as Kael. 
-His prowess in tracking down prey was legendary, rivaling even that of the great goddess Artemis herself. 
-One day, while wandering deep into the heart of a dense forest, Kael stumbled upon an unusual sight – rams frolicking freely among the trees. 
-Curiosity piqued, he decided to pursue them, unaware of the mischief brewing around him. 
+One day, while wandering deep into the heart of a dense forest, Lily stumbled upon an unusual sight – rams frolicking freely among the trees. 
+Curiosity piqued, she decided to pursue them, unaware of the mischief brewing around her. 
 Suddenly, a booming laugh echoed through the trees, followed closely by the appearance of none other than Astaroth, the Winter Huntress. 
-She revealed herself as the true architect behind this grand game, offering Kael a challenge: 
-if he could hunt down all the rogue rams and turn them into delicious hamburgers before sunset, he would earn a prize beyond his wildest dreams. 
-Agreeing to the terms, Kael embarked on a frantic chase across treacherous terrain, dodging traps and evading obstacles along the way. 
-As the hours ticked away, fatigue began to set in, testing both his physical and mental fortitude. 
-But driven by the promise of ultimate glory, he pressed on relentlessly, determined to prove himself worthy of Astaroth's favor. 
-With the clock counting down towards sundown and victory within reach, only time will tell whether Kael succeeds in claiming his reward or falls victim to Astaroth's deceptively playful nature."
+She revealed herself as the true architect behind this grand game, offering Lily a challenge: 
+if she could hunt down all the rogue rams and turn them into delicious hamburgers before sunset, she would earn a prize beyond her wildest dreams. 
+Agreeing to the terms, Lily embarked on a frantic chase across treacherous terrain, dodging traps and evading obstacles along the way. 
+As the hours ticked away, fatigue began to set in, testing both her physical and mental fortitude. 
+But driven by the promise of ultimate glory, she pressed on relentlessly, determined to prove herself worthy of Astaroth's favor. 
+With the clock counting down towards sundown and victory within reach, 
+only time will tell whether Lily succeeds in claiming her reward or falls victim to Astaroth's deceptively playful nature."
 """
 import pygame
 import random
