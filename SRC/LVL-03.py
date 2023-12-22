@@ -32,9 +32,9 @@ BLACK = (0, 0, 0)
 GREY = (100, 100, 100)
 PINK = (255, 0, 255)
 
-player_sprite = pygame.image.load('../IMG/CHAR/player_sprite.png')
+player_sprite = pygame.image.load('../IMG/CHAR/lily_sprite.png')
 wall_tile = pygame.image.load('../IMG/TILE/wall_tile.png')
-background_music = pygame.mixer.Sound('../BGM/LVL-03/background_music.wav')
+background_music = pygame.mixer.Sound('../BGM/LVL-03/85-E-minor-6669.wav')
 
 # Maze settings
 maze_rows = 10
