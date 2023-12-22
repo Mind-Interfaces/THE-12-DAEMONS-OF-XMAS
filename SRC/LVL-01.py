@@ -28,6 +28,13 @@ width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Anamelech's Journey")
 
+# Load your MIDI file
+bgm_file = "../BGM/LVL-01/110-G-minor-1337.wav"
+pygame.mixer.music.load(bgm_file)
+
+# Play the MIDI file and loop it indefinitely
+pygame.mixer.music.play(loops=-1)
+
 # Load images with error handling
 def load_image(image_path):
     try:
