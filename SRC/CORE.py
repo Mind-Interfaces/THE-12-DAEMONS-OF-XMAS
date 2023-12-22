@@ -15,6 +15,16 @@ from gradio_client import Client
 # Initialize Pygame
 pygame.init()
 
+# Initialize the mixer module
+pygame.mixer.init()
+
+# Load your MIDI file
+midi_file = "../BGM/music_box_theme.mid"
+pygame.mixer.music.load(midi_file)
+
+# Play the MIDI file and loop it indefinitely
+pygame.mixer.music.play(loops=-1)
+
 # Global variables for buttons
 button_states = {
     'F1': False,
@@ -72,7 +82,7 @@ def generate_image(prompt):
             "sd_model_checkpoint": "sd_xl_turbo_1.0_fp16.safetensors [e869ac7d69]",
             'width': 1344,
             'height': 768,
-            'steps': 10}  # Number of steps can be adjusted as needed
+            'steps': 12}  # Number of steps can be adjusted as needed
 
     # override_settings = {
     #    "filter_nsfw": True,
@@ -265,7 +275,7 @@ pygame.display.set_caption("CORE")
 log("Game window initialized.")
 
 # Initial prompt setup
-prompt = "(The 12 Daemons of XMAS:1), (8-Bit Christmas Pixel Game Intro:1), (White Outline:1), (Black Background:1), <lora:coffin_xdsl_x80_v0.3:1>"
+prompt = "(The 12 Daemons of XMAS:1), (White Outline:1), (Black Background:1), <lora:coffin_xdsl_x80_v0.3:0.8>"
 
 # Input box and chat history
 input_box = pygame.Rect(100, 650, 140, 32)
