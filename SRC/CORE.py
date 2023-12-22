@@ -1,5 +1,4 @@
 # THE 12 DAEMONS OF XMAS
-# Primary Game Interface
 
 from datetime import datetime
 import base64
@@ -125,7 +124,7 @@ def start_background_image_generation(prompt):
 # New Gradio chat handler function
 def query_model(prompt):
     endpoint = "https://soil-editorials-tomatoes-personally.trycloudflare.com/v1/completions"
-    data = {"prompt": prompt, "max_tokens": 200, "temperature": 0.7, "top_p": 0.9, "seed": 666}
+    data = {"prompt": prompt, "max_tokens": 100, "temperature": 0.7, "top_p": 0.9, "seed": 666}
     response = requests.post(endpoint, json=data)
     if response.status_code == 200:
         return response.json()["choices"][0]["text"]
@@ -140,6 +139,7 @@ def chat(message):
     log(f"Response received: {result}")
     # New logic to update background based on response
     global prompt  # Use the global prompt variable
+    prompt = "Christmas, <lora:coffin_xdsl_x80_v0.3:0.8>"
     prompt += ', ' + result.strip()  # Append the result to the prompt
     start_background_image_generation(prompt)  # Start generating new background
     return result
@@ -227,7 +227,7 @@ def toggle_F3():
     global prompt, button_state
     was_updated = False
 
-    # Implement specific action for button F3 (NSFW) APPEND
+    # Implement specific action for button F3 (LORA) APPEND
     if button_states['F3'] and ",  <lora:coffin_xdsl_x80_v0.3:0.8>" not in prompt:
         prompt += ",  <lora:coffin_xdsl_x80_v0.3:0.8>"
         was_updated = True
@@ -265,7 +265,7 @@ pygame.display.set_caption("CORE")
 log("Game window initialized.")
 
 # Initial prompt setup
-prompt = "Christmas,  <lora:coffin_xdsl_x80_v0.3:1>"
+prompt = "(The 12 Daemons of XMAS:1), (8-Bit Christmas Pixel Game Intro:1), (White Outline:1), (Black Background:1), <lora:coffin_xdsl_x80_v0.3:1>"
 
 # Input box and chat history
 input_box = pygame.Rect(100, 650, 140, 32)
@@ -378,3 +378,4 @@ while running:
 pygame.quit()
 log("Connection closed. Exiting application.")
 sys.exit()
+
