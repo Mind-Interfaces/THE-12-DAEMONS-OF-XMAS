@@ -62,7 +62,7 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images and sound
-player_image = load_image('../IMG/BOSS/anamelech_sprite.png')
+player_image = load_image('../IMG/CHAR/lily_sprite.png')
 tree_image = load_image('../IMG/TREE/christmas_tree.png')
 background_image = load_image('../IMG/BACKGROUND/winter_forest.png')
 santa_image = load_image('../IMG/NPC/santa_sprite.png')
