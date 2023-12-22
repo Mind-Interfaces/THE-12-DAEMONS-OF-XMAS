@@ -28,6 +28,14 @@ width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Ramburger Hunt")
 
+# Load background music
+bgm_file = "../BGM/LVL-02/95-C-Major-8mm.wav"
+pygame.mixer.music.load(bgm_file)
+
+# Play the music and loop it indefinitely
+pygame.mixer.music.play(loops=-1)
+
+
 # Load images with error handling
 def load_image(image_path):
     try:
@@ -47,7 +55,7 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images
-kael_image = load_image('../IMG/CHAR/kael_sprite.png')
+kael_image = load_image('../IMG/CHAR/lily_sprite.png')
 ram_image = load_image('../IMG/NPC/ram_sprite.png')
 background_image = load_image('../IMG/BACKGROUND/forest_background.png')
 powerup_image = load_image('../IMG/SPRITE/powerup_sprite.png')  # Power-up sprite
