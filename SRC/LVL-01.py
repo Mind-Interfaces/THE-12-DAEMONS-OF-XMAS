@@ -26,7 +26,7 @@ import time
 pygame.init()
 width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Anammelech's Journey")
+pygame.display.set_caption("Anamelech's Journey")
 
 # Load images with error handling
 def load_image(image_path):
@@ -55,7 +55,7 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images and sound
-player_image = load_image('../IMG/BOSS/anammelech_sprite.png')
+player_image = load_image('../IMG/BOSS/anamelech_sprite.png')
 tree_image = load_image('../IMG/TREE/christmas_tree.png')
 background_image = load_image('../IMG/BACKGROUND/winter_forest.png')
 santa_image = load_image('../IMG/NPC/santa_sprite.png')
