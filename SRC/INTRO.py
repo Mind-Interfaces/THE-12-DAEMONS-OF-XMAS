@@ -44,12 +44,12 @@ pygame.init()
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 BACKGROUND_MUSIC_PATH = '../BGM/music_box_theme.mid'
 TREE_IMAGES = {
-    "default": '../IMG/default_tree.png',
-    "exploding": '../IMG/exploding_tree.png',
-    "exploded": '../IMG/exploded_tree.png'
+    "default": '../IMG/TREE/default_tree.png',
+    "exploding": '../IMG/TREE/exploding_tree.png',
+    "exploded": '../IMG/TREE/exploded_tree.png'
 }
 TITLE_IMAGE_PATH = '../IMG/game_title.png'
-DEBUG_DAEMON_IMAGE_PATH = '../IMG/debug_daemon.png'  # Debug image
+DEBUG_DAEMON_IMAGE_PATH = '../IMG/DEBUG/debug_daemon.png'  # Debug image
 
 # Initialize screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
