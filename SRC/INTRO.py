@@ -42,7 +42,7 @@ pygame.init()
 
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
-BACKGROUND_MUSIC_PATH = '../BGM/LVL-01/110-G-minor-1337.wav'
+BACKGROUND_MUSIC_PATH = '../BGM/music_box_theme.mid'
 TREE_IMAGES = {
     "default": '../IMG/default_tree.png',
     "exploding": '../IMG/exploding_tree.png',
