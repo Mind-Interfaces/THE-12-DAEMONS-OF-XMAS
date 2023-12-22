@@ -87,7 +87,7 @@ def collect_powerup():
         if pygame.Rect(lily_position[0], lily_position[1], lily_image.get_width(), lily_image.get_height()).colliderect(
             pygame.Rect(powerup_position[0], powerup_position[1], powerup_image.get_width(), powerup_image.get_height())):
             powerup_positions.remove(powerup_position)
-            lily_stamina = min(kael_stamina + 20, 100)  # Increase stamina
+            lily_stamina = min(lily_stamina + 20, 100)  # Increase stamina
 
 # Main game loop
 running = True
