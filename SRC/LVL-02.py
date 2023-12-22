@@ -54,19 +54,19 @@ def show_debug_message(message):
     time.sleep(5)
 
 # Load images
-kael_image = load_image('../IMG/CHAR/lily_sprite.png')
+lily_image = load_image('../IMG/CHAR/lily_sprite.png')
 ram_image = load_image('../IMG/NPC/ram_sprite.png')
 background_image = load_image('../IMG/BACKGROUND/forest_background.png')
 powerup_image = load_image('../IMG/SPRITE/powerup_sprite.png')  # Power-up sprite
 
 # Game variables
-kael_position = [width // 2, height // 2]
+lily_position = [width // 2, height // 2]
 ram_positions = [[random.randrange(width), random.randrange(height)] for _ in range(5)]
 powerup_positions = [[random.randrange(width), random.randrange(height)] for _ in range(3)]  # Power-up positions
 caught_rams = 0
 start_time = time.time()
 game_duration = 300  # 5 minutes in seconds
-kael_stamina = 100  # Kael's initial stamina
+lily_stamina = 100  # Lily's initial stamina
 
 # Font for displaying text
 font = pygame.font.Font(None, 36)
@@ -76,18 +76,18 @@ def draw_text(text, position):
     screen.blit(text_surface, position)
 
 def manage_stamina():
-    global kael_stamina
-    # Decrease stamina as Kael moves
-    kael_stamina -= 0.1  # Adjust the rate as needed
-    kael_stamina = max(kael_stamina, 0)
+    global lily_stamina
+    # Decrease stamina as Lily moves
+    lily_stamina -= 0.1  # Adjust the rate as needed
+    lily_stamina = max(kael_stamina, 0)
 
 def collect_powerup():
-    global kael_stamina
+    global lily_stamina
     for powerup_position in powerup_positions[:]:
-        if pygame.Rect(kael_position[0], kael_position[1], kael_image.get_width(), kael_image.get_height()).colliderect(
+        if pygame.Rect(lily_position[0], lily_position[1], lily_image.get_width(), lily_image.get_height()).colliderect(
             pygame.Rect(powerup_position[0], powerup_position[1], powerup_image.get_width(), powerup_image.get_height())):
             powerup_positions.remove(powerup_position)
-            kael_stamina = min(kael_stamina + 20, 100)  # Increase stamina
+            lily_stamina = min(kael_stamina + 20, 100)  # Increase stamina
 
 # Main game loop
 running = True
@@ -99,20 +99,20 @@ while running:
     # Player movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        kael_position[0] -= 5
+        lily_position[0] -= 5
     if keys[pygame.K_RIGHT]:
-        kael_position[0] += 5
+        lily_position[0] += 5
     if keys[pygame.K_UP]:
-        kael_position[1] -= 5
+        lily_position[1] -= 5
     if keys[pygame.K_DOWN]:
-        kael_position[1] += 5
+        lily_position[1] += 5
 
     manage_stamina()
     collect_powerup()
 
     # Ram catching logic
     for ram_position in ram_positions[:]:
-        if pygame.Rect(kael_position[0], kael_position[1], kael_image.get_width(), kael_image.get_height()).colliderect(
+        if pygame.Rect(lily_position[0], lily_position[1], lily_image.get_width(), lily_image.get_height()).colliderect(
             pygame.Rect(ram_position[0], ram_position[1], ram_image.get_width(), ram_image.get_height())):
             ram_positions.remove(ram_position)
             caught_rams += 1
@@ -124,18 +124,18 @@ while running:
         screen.blit(ram_image, ram_position)
     for powerup_position in powerup_positions:
         screen.blit(powerup_image, powerup_position)  # Draw power-ups
-    screen.blit(kael_image, kael_position)
+    screen.blit(lily_image, lily_position)
 
-    # Display caught rams, timer, and Kael's stamina
+    # Display caught rams, timer, and Lily's stamina
     elapsed_time = time.time() - start_time
     remaining_time = max(game_duration - int(elapsed_time), 0)
     draw_text(f"Rams Caught: {caught_rams}", (10, 10))
     draw_text(f"Time Left: {remaining_time}", (10, 40))
-    draw_text(f"Stamina: {kael_stamina}", (10, 70))
+    draw_text(f"Stamina: {lily_stamina}", (10, 70))
 
     # Check for game end conditions
-    # if remaining_time == 0 or kael_stamina //FRAG?
-    if remaining_time == 0 or kael_stamina <= 0:
+    # if remaining_time == 0 or lily_stamina //FRAG?
+    if remaining_time == 0 or lily_stamina <= 0:
         show_debug_message("Game Over! Try Again.")
         running = False
     elif caught_rams == len(ram_positions):
